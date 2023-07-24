@@ -1,0 +1,11 @@
+.line-chart{
+    height: 70vmin;
+display: flex;
+justify-content: center;
+align-items: center;
+    /* border: 1px solid red; */
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 4px;
+    
+}

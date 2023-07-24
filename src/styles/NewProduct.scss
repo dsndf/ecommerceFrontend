@@ -1,0 +1,52 @@
+@import 'var';
+@import 'mixin';
+
+
+   
+
+.new-main-cont{
+    @include flexprop(row,center,center);
+overflow-y: scroll;
+  
+  background-color: grey;
+  background-color:#eaeaea;
+
+    form{
+     
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        // border: 1px solid;
+     background-color: #fff;
+        height: 100%;
+        box-shadow: 0px 0px 20px 6px rgba(151, 151, 151, 0.22);
+        justify-content:space-evenly;
+        align-items: center;
+        border-radius: 4px;
+            padding: 20px;
+         padding: 10px;
+   
+ .product-imgs{
+    // border: 1px solid red;
+    height: 40px;
+    @include flexprop(row,space-between,center);
+    gap: 1em;
+
+   img{
+    width: 29px;
+    height: 30px;
+   }
+ }
+
+
+
+}
+   
+}
+
+@media screen and (max-width:600px) {
+  .new-main-cont{
+    height: 92vh;
+   
+}
+}

@@ -1,0 +1,32 @@
+@import 'mixin';
+
+.admin-update-user{
+    @include flexprop(row,center,center);
+
+        form{
+         
+            width: 360px;
+            display: flex;
+            flex-direction: column;
+            // border: 1px solid;
+         background-color: #fff;
+            height: 90%;
+            box-shadow: 0px 0px 20px 6px rgba(151, 151, 151, 0.22);
+            justify-content:space-evenly;
+            align-items: center;
+            border-radius: 4px;
+                padding: 20px;
+             padding: 10px;
+       
+
+
+    
+    }
+       
+}
+@media screen and (max-width:600px) {
+    .admin-update-user{
+      height: 92vh;
+     
+  }
+  }

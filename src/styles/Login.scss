@@ -1,0 +1,202 @@
+@import 'var';
+
+.log-sign-cont {
+    position: relative;
+}
+
+.userLoginPage {
+
+    height: 100vmin;
+    margin: 20px 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .userForm {
+        width: 60vmin;
+        background-color: #fff;
+        height: 80vmin;
+        box-shadow: 0px 0px 20px 6px rgba(151, 151, 151, 0.22);
+
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        justify-content: space-between;
+        >form {
+            transition: all 0.5s;
+        }
+
+        >div:first-child {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            // border: 1px solid red;
+            margin-top: 10px;
+            padding: 10px 0px;
+            position: relative;
+
+            >h2 {
+                cursor: pointer;
+                font-size: 20px;
+                margin-bottom: 4px;
+
+
+            }
+
+            hr {
+                position: absolute;
+                width: 50%;
+
+                border: 1px solid $weborange;
+
+                bottom: 0px;
+                transition: all 0.5s;
+                transform: translateX(-122px);
+            }
+
+        }
+        >form:nth-child(2) {
+            display: flex;
+ 
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            justify-content: space-around;
+            box-sizing: border-box;
+            padding: 20px;
+            height: 80%;
+            position: relative;
+
+            a {
+                color: rgb(53, 119, 241);
+                display: block;
+                width: 100%;
+                text-align: right;
+            }
+
+
+
+
+
+        }
+
+        >form:last-child {
+            position: absolute;
+            display: flex;
+            // border: 1px solid red;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            box-sizing: border-box;
+            padding: 20px;
+            height: 80%;
+            width: 100%;
+            top: 76px;
+            transform: translateX(110%);
+
+
+            #SignUpImage {
+                font-size: 10px;
+
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                img {
+
+                    width: 50px;
+                    border-radius: 101%;
+                    height: 50px;
+                }
+
+            }
+
+
+
+        }
+
+
+    }
+
+}
+
+
+
+@media screen and (max-width:600px) {
+    .log-sign-cont {
+        .userLoginPage {
+
+            height: 110vmin;
+            margin: 0px 0px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .userForm {
+                width: 80vmin;
+
+                height: 100vmin;
+
+
+
+
+                >div:first-child {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    // border: 1px solid red;
+                    margin-top: 10px;
+                    padding: 10px 0px;
+                    position: relative;
+
+                    >h2 {
+                        cursor: pointer;
+                        font-size: 17px;
+                        margin-bottom: 4px;
+
+
+                    }
+
+                    hr {
+                        position: absolute;
+                        width: 50%;
+
+                        border: 1px solid $weborange;
+
+                        bottom: 0px;
+                        transition: all 0.5s;
+                        transform: translateX(-122px);
+                    }
+
+                }
+
+                >form:nth-child(2) {
+                    display: flex;
+                    // border: 1px solid red;
+                    flex-direction: column;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: space-around;
+                    box-sizing: border-box;
+                    padding: 20px;
+                    height: 100%;
+                    position: relativ
+                }
+
+                >form:last-child {
+                    justify-content: flex-start;
+                    gap: 20px;
+
+
+                }
+
+
+            }
+
+        }
+    }
+
+}

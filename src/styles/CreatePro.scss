@@ -1,0 +1,45 @@
+.new-product-cont{
+    height: 100vh;
+    background-color: #ffffff;
+    .main-cont{
+        height: 100%;
+        display: flex;
+        // align-items: center;
+        padding: 50px;
+ border: 1px solid;
+        width: 100%;
+    }
+    form{
+ display: flex;
+ justify-content: flex-end;
+ align-items: center;
+//  border: 1px solid;
+        >div{
+            gap: 40px;
+            /* border: 1px solid; */
+            padding: 50px;
+            height: 80%;
+            align-items: center;
+            width: 50%;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+        
+input[type=file]{
+    border: 1px solid ;
+    background-color: rgb(255, 29, 85);
+}
+        input{
+            
+    border:1px solid;
+    border-radius: 4px;
+    padding: 15px 35px;
+         
+        }
+           input::placeholder{
+            font-size: 13px;
+           }
+
+    }
+}

@@ -1,0 +1,29 @@
+.Logloader{
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    div{
+        border: 3px solid rgb(174 174 174);
+        width: 60px;
+        height: 60px;
+        border-radius: 60%;
+        border-top: none;
+border-bottom:none;
+animation-name: loading;
+animation-iteration-count: infinite;
+animation-fill-mode: both;
+animation-duration: 0.5s;
+animation-timing-function: linear;
+animation-direction: normal;
+}
+@keyframes loading{
+
+0%{
+    transform: rotate(-360deg);
+}
+
+    }
+}

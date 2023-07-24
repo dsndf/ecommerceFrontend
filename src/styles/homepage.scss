@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Jost:wght@100;200;300;400;500;600;800&display=swap');
+@import 'var';
+.home-page-cont {
+height: 100%;
+.ecom-banner{
+
+    height: 110vmin;
+    background: linear-gradient(rgb(255 255 255), rgb(181 231 255 / 80%));
+    padding: 25px 85px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ div{
+    p{
+        margin: 25px 0;
+    }
+    .expl-a{
+        text-decoration: none;
+        color: black;
+        border: 1px solid;
+        padding: 7px 76px;
+        background-color:$webgreen;
+        border-radius: 32px;
+        color: #fff;
+        border: none;
+    }
+    img{
+        width: 550px;
+
+    }
+ }
+
+}
+.ecom-category{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 100px;
+img{
+    max-width: 300px;
+}
+
+}
+
+    .feature-pro-cont {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 10px 115px;
+        gap: 10px;
+        justify-content: space-around;
+
+    }
+    .companies{
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+ margin: 40px 0;
+ img{
+    width: 150px;
+    filter: grayscale(1);
+    &:hover{
+        filter: grayscale(0);
+    }
+ }
+    }
+}
+@media screen and (max-width:"768px") {
+    .home-page-cont {
+        height: 100%;
+        .ecom-banner{
+        
+            height: auto;
+            background: linear-gradient(rgb(255 255 255), rgb(181 231 255 / 80%));
+            padding: 25px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+         div{
+            h1{
+                font-size: 25px;
+            }
+            p{
+                margin: 25px 0;
+                font-size: 15px;
+            }
+            .expl-a{
+                text-decoration: none;
+                color: black;
+                border: 1px solid;
+                padding: 7px 76px;
+                background-color:$webgreen;
+                border-radius: 32px;
+                color: #fff;
+                border: none;
+            }
+            img{
+                width: 250px;
+                margin-top: 10px;
+        
+            }
+         }
+        
+        }
+        .ecom-category{
+            display: flex;
+        
+            align-items: center;
+            padding: 20px 100px;
+            gap: 15px;
+            flex-direction: column;
+        img{
+            max-width: 250px;
+        }
+        
+        }
+        
+            .feature-pro-cont {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                padding: 10px 115px;
+                gap: 10px;
+                justify-content: space-around;
+        
+        
+            }
+            .companies{
+             display: flex;
+        gap: 15px;
+        flex-direction: column;
+             align-items: center;
+         margin: 40px 0;
+         img{
+            width: 150px;
+            filter: grayscale(1);
+            &:hover{
+                filter: grayscale(0);
+            }
+         }
+            }
+        }
+    
+}
+@media screen and (max-width:"500px") {
+  
+    .home-page-cont {
+  
+        
+            .feature-pro-cont {
+             
+                padding: 10px 15px;
+         
+        
+        
+            }
+          
+        }
+    
+        
+    
+}

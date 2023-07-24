@@ -1,0 +1,15 @@
+@import 'mixin';
+
+.admin-comp{
+    height: 87vmin;
+    background-color: #eaeaea;
+  @include flexprop(row,space-between,flex-start);
+}
+@media screen and (max-width:768px) {
+
+    .admin-comp{
+        height: auto;
+      @include flexprop(column,space-between,flex-start);
+    }
+
+}

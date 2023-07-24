@@ -1,0 +1,151 @@
+@import 'var';
+.features{
+  border: 1px solid black;
+  height: 300px;
+}
+.banner {
+
+  height: 100vmin;
+  color: #fff;
+border: 2px solid hotpink;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+
+.banner button {
+  padding: 10px;
+  background-color:$yellow;
+  
+  width: 180px;
+  /* font-weight: bold; */
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid rgb(62, 62, 62);
+  transition: all 0.5s;
+}
+
+.banner button:hover {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
+
+}
+
+
+.home-products{
+// border: 1px solid;
+margin: 50px 0;
+display: flex;
+justify-content: space-around;
+padding: 10px;
+align-items: flex-start;
+height: 500px;
+>div:first-child{
+  height: 440px;
+  width: 44%;
+  padding: 14px;
+  position: relative;
+  .homepro-desc{
+    // border: 1px solid;
+    position: absolute;
+    top: 110px;
+    padding: 10px;
+    left: 60px;
+    h1{
+      font-size: 40px;
+      font-family: Anton;
+    }
+    p{
+      font-size: 13px;
+      color: $nyellow;
+      font-weight: bold;
+    }
+    button{
+      padding: 10px 20px;
+      border-radius: 10px;
+      background-color: $yellow;
+      color: rgb(0, 0, 0);
+      margin: 10px 0;
+      border: none;
+    }
+  }
+}
+>div:last-child{
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 55%;
+
+  .samplepro{
+    background-color: white;
+    height: 169px;
+    width: 180px;
+    text-align: center;
+    padding: 10px;
+    margin: 15px;
+    box-shadow: 0 0 10px #dbdbdb;
+    padding-bottom: 20px;
+    transition: all 0.5s;
+    &:hover{
+      cursor: pointer;
+      transform: scale(1.04);
+    box-shadow: 0 0 28px #cccccc;
+
+    }
+    h4{
+    font-family: 'Roboto';  
+  
+    }
+    h3{
+      color: $myColor;
+    }
+  }
+}
+}
+.home-features{
+display: flex;
+justify-content: space-around;
+align-items: center;
+padding: 15px 10px; 
+background-color: $green;
+ color: #004d00;
+>div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  svg{
+    font-size: 25px;
+
+  }
+}
+
+}
+
+.hero-banners{
+ 
+ height: 300px;
+
+margin: 10px 0;
+margin-bottom: 50px;
+}
+
+@media screen and (max-width:600px) {
+  .banner {
+    text-align: center;
+  }
+
+  .banner::after {
+
+    clip-path: polygon(100% 100%, 100% 100%, 0 100%);
+
+  }
+
+}

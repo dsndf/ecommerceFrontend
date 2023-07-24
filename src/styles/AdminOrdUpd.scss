@@ -1,0 +1,159 @@
+@import 'var';
+
+.admin-order-main-cont {
+ display: flex;
+ justify-content: end;
+align-items: flex-start;
+     height: auto;
+    width: 100%;
+
+    padding-top: 100px;
+    background-color: $dashbg;
+    .admin-order-update-cont {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 5px;
+        align-items: center;
+        /* border: 1px solid; */
+        margin-right: 100px;
+        width: 65%;
+
+        h1 {
+            font-size: 20px;
+        }
+
+        .main {
+            display: flex;
+            justify-content: flex-start;
+          align-self: flex-start;
+            border: none;
+            width: 80%;
+            position: relative;
+            background-color: white;
+            border-radius: 6px;
+           
+          
+
+            .ord-icon {
+                position: absolute;
+                width: 22%;
+                right: 125px;
+                top: 200px;
+            }
+
+            .c1 {
+                .orderid {
+                    font-size: 25px;
+                    // font-family: 'Rubik Mono One';
+                    margin: 10px 0;
+                }
+
+                h5 {
+                    font-size: 15px;
+                }
+
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+                width: 100%;
+                padding: 30px 60px;
+
+                .c11>div {
+
+                    margin: 10px 0;
+
+                    width: 100%;
+
+                    .row {
+                        display: flex;
+                        justify-content: space-between;
+                        width: 100%;
+
+                        >h5:last-child {
+                            // font-weight: 800;
+                            color: grey;
+                            width: 80%;
+                            margin-left: 20px;
+
+                            text-align: left;
+                        }
+                    }
+
+                }
+
+                .c12 {
+                    border: 1px solid $grey;
+                    border-left: none;
+                    border-right: none;
+                    border-bottom: none;
+                    padding: 20px 0;
+
+                    >div .cartItem {
+                        //    border: 1px solid $grey;
+                        display: grid;
+                        padding: 10px;
+                        grid-template-columns: 1fr 2fr 2fr 1fr;
+                    }
+                }
+            }
+        }
+
+
+
+    }
+}
+
+ @media screen and (max-width:600px) {
+    .admin-order-update-cont {
+        height: auto;
+
+        .main {
+
+            grid-template-columns: 1fr;
+            padding: 20px 0px;
+
+            .c1 {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+
+                .c11>div {
+
+                    display: flex;
+                    justify-content: center;
+                    margin: 20px 0;
+                    width: 100%;
+
+
+                    >div {
+                        width: 60%;
+
+
+                        .row {
+                            display: flex;
+                            justify-content: space-between;
+
+                            width: 100%;
+
+                            >h5:last-child {
+                                width: 50%;
+                            }
+                        }
+                    }
+                }
+
+                .c12 {
+                    >div .cartItem {
+                        grid-template-columns: 0.5fr 0fr 1fr;
+                    }
+                }
+            }
+
+
+        }
+
+    }
+}

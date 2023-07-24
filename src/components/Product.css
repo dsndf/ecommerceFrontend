@@ -1,0 +1,9 @@
+.productContainer{
+/* border: 1px solid red; */
+display: flex;
+justify-content: space-around;
+align-items: center;
+padding: 20px 40px;
+flex-wrap:wrap
+
+}

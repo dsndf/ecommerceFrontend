@@ -1,0 +1,31 @@
+
+@import 'var';
+.Heading{
+/* border: 1px solid red; */
+
+margin: 40px 0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 100%;
+padding: 10px 0;
+text-align: center;
+ h3{
+    padding: 5px 32px;
+    border-top: none;
+    font-size: 27px;
+    border-left: none;
+font-family: 'Joan', serif;
+font-weight: 600;
+    border-right: none;
+
+}
+ hr{
+    width: 100px;
+    height: 5px;
+    border-radius: 12px;
+    background-color: #ef9b00;
+    border: none;
+ }
+}

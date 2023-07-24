@@ -1,0 +1,212 @@
+@import 'var';
+
+
+
+.cart {
+    height: auto;
+
+    margin-bottom: 50px;
+    -ms-overflow-style: none;
+    /* for Internet Explorer, Edge */
+    scrollbar-width: none;
+    /* for Firefox */
+ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+ 
+
+    &::-webkit-scrollbar {
+        display: none;
+        /* for Chrome, Safari, and Opera */
+    }
+
+    .grosstotal {
+        border: 2px solid $webgreen;
+        width: 50%;
+        padding: 10px;
+        padding-top: 20px;
+        text-align: right;
+        height: 30%;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        margin-right: 55px;
+        align-self: flex-end;
+
+        >div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        h3 {
+
+
+            font-size: 25px;
+        }
+
+        .org-btn {
+          width: 240px;
+        }
+
+    }
+
+    >table {   
+         overflow-y: scroll;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        width: 90%;
+        border-collapse: collapse;
+
+        input[type=number] {
+            width: 30px;
+
+            padding: 4px 0px;
+            width: 38px;
+            font-size: 17px;
+            border: 1px solid #c5c5c5;
+            border-top: none;
+            border-bottom: none;
+            text-align: center;
+
+        }
+
+        >thead {
+            tr {
+                th {
+                    padding: 10px 10px;
+                }
+
+            }
+        }
+
+        >tbody {
+
+            tr {
+
+                td {
+                    padding-top: 10px;
+                }
+
+                >td:last-child {
+                    font-size: 17px;
+                    width: 100px;
+                    color: black;
+                    padding-top: 37px;
+                    vertical-align: top;
+                }
+            }
+
+        }
+
+
+        tr {
+
+
+
+            th,
+            td {
+
+
+                box-sizing: border-box;
+
+                text-align: center;
+            }
+
+
+
+            th {
+                padding: 10px 0;
+                background-color: #ffffff;
+                border: none;
+       background-color: $webgreen;
+                color: #fff;
+                color: rgb(255, 255, 255);
+            
+            }
+
+            >td:nth-child(1),
+            >th:nth-child(1) {
+                text-align: left;
+
+            }
+
+            >td:nth-child(3),
+            >th:nth-child(3) {
+                text-align: right;
+
+            }
+
+
+
+        }
+
+
+
+
+    }
+
+    .qty-btn {
+
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 15px;
+        align-items: center;
+
+        >div {
+            border: 1px solid #d1d1d1;
+            display: flex;
+            align-items: center;
+
+            svg {
+                font-size: 14px;
+            }
+        }
+    }
+}
+@media screen and (max-width:768px) {
+    .cart {
+     
+        padding: 9px 15px;
+     
+
+    
+        .grosstotal {
+  
+            width: 100%;
+            padding: 0px;
+            padding-top: 10px;
+            margin-right: 0px;
+     >div{
+        h2{
+            font-size: 20px;
+        }
+        h3{
+            font-size: 20px;
+        }
+     }
+        }
+
+        >table{
+            width: 100%;
+            >tbody {
+
+                tr {
+    
+                
+                    >td:last-child {
+                   padding-top: 35px;
+                    }
+                }
+    
+            }
+        }
+          
+    }
+ 
+
+
+
+}

@@ -1,0 +1,85 @@
+@import 'var';
+
+.shipping {
+    height: 100%;
+
+    .shippingBox {
+        width: 80vmin;
+        
+        width: 100%;
+
+        display: flex;
+        padding: 28px 10px;
+        position: relative;
+        overflow: hidden;
+
+        justify-content: center;
+        align-items: center;
+
+
+        .shippingForm {
+
+
+        box-shadow: 0px 0px 20px 6px rgba(151, 151, 151, 0.22);
+  
+            padding: 10px 24px;
+            height: 35rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 65vmin;
+
+
+            
+
+         
+            } 
+
+          
+
+         
+
+   
+.blue-btn{
+    width: 100%;
+}
+    }
+
+}
+@media screen and (max-width:600px) {
+    .shipping {
+    height: 100%;
+
+    .shippingBox {
+        width: 100vmin;
+        
+        width: 100%;
+
+        display: flex;
+        padding: 28px 10px;
+        position: relative;
+        overflow: hidden;
+
+        justify-content: center;
+        align-items: center;
+
+
+        .shippingForm {
+
+     width: 80vmin;
+            } 
+
+          
+
+         
+
+   
+.blue-btn{
+    width: 100%;
+}
+    }
+
+}
+    
+}
