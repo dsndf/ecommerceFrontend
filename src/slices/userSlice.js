@@ -180,7 +180,7 @@ export function registerUser(userForm) {
                 }
              
             }
-            const { data } = await axios.post(`${server}user/register`, userForm, config);
+            const { data } = await axios.post(`${server}/user/register`, userForm, config);
 
             if (!data.success) {
                 throw new Error(data.message);
