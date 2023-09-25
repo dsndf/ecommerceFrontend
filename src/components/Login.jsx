@@ -52,6 +52,7 @@ const Login = () => {
     if (isLogin) {
       toast.success("Logged In Successfully");
       dispatch(setLoginStatus(false));
+      navigation('/account')
     }
     if (isRegister) {
       toast.success("Registered Successfully");
@@ -61,11 +62,7 @@ const Login = () => {
       toast.error(err);
       dispatch(setUserError(""));
     }
-    if (userState.isAuthenticated) {
-   
-      navigation("/account");
-    }
-  }, [dispatch, isLogin, status, isRegister, err]);
+  }, [ isLogin, status, isRegister, err]);
 
   const registerDataChangeHandler = (e) => {
     if (e.target.name === "avatar") {
@@ -84,6 +81,7 @@ const Login = () => {
   };
   const registerSubmitHandler = (e) => {
     e.preventDefault();
+    console.log(userData);
     let myForm = new FormData();
     //  myForm.name  = userData.name;
     //  myForm.email = userData.email;
@@ -92,9 +90,8 @@ const Login = () => {
     myForm.set("name", userData.name);
     myForm.set("email", userData.email);
     myForm.set("password", userData.password);
-
     myForm.set("avatar", avatar);
-    console.log("myform ", myForm);
+    console.log(myForm);
     dispatch(registerUser(myForm));
   };
 

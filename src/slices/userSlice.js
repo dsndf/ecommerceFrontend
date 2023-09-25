@@ -171,7 +171,7 @@ export function registerUser(userForm) {
         try {
            
             let obj = { ...userForm };
-           
+           console.log("user data",obj)
 
             let config = {
                 withCredentials:true,
@@ -180,7 +180,7 @@ export function registerUser(userForm) {
                 }
              
             }
-            const { data } = await axios.post(`${server}user/register`, userForm, config,);
+            const { data } = await axios.post(`${server}/user/register`, userForm, config);
 
             if (!data.success) {
                 throw new Error(data.message);
@@ -236,7 +236,6 @@ export function loadUser() {
 
 }
 // thunk middleware for logout
-
 export function logout() {
     return async (dispatch, getState) => {
         dispatch(setStatus(STATUS.LOADING));

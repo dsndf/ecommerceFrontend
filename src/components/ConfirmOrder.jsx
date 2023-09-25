@@ -69,7 +69,7 @@ const ConfirmOrder = () => {
           <div className="c12">
             <h1>YOUR CART ITEMS:</h1>
             <div
-              style={{ margin: "10px 0", overflowY: "scroll" }}
+              style={{ margin: "10px 0"}}
               className="confirm-cart"
             >
               {cart.map((v, ind) => {
@@ -102,7 +102,7 @@ const ConfirmOrder = () => {
 
             <div className="c22">
               {" "}
-              <h5>₹{subTotal}</h5>
+              <h5>₹{subTotal}</h5> 
               <h5>₹{shippingCharge}</h5>
               <h5>₹{tax}</h5>
             </div>

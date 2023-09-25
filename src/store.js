@@ -8,8 +8,9 @@ import cartSlice from "./slices/cartSlice";
 import orderDetailsSlice from "./slices/orderDetailsSlice";
 import newProductSlice from "./slices/newProductSlice";
 import wishListSlice from "./slices/wishListSlice";
+
 const store = configureStore({
-  reducer: {
+  reducer: { 
     productReducer: productsSlice,
     productDetailReducer: ProDetailSlice,
     userReducer: userSlice,

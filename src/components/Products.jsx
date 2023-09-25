@@ -47,22 +47,11 @@ const Products = () => {
   const productsState = useSelector((state) => state.productReducer);
   const { products, resultPerPage, counts, availableProducts } = productsState;
   useEffect(() => {
-    dispatch(
-      fetchProducts(
-        keyword,
-        category !== "" ? 1 : currentPage,
-        price,
-        category,
-        rating,
-        sortBy
-      )
-    );
+     dispatch(fetchProducts( keyword,category !== "" ? 1 : currentPage,price,category,rating,sortBy));
   }, [dispatch, keyword, currentPage, price, category, rating, sortBy]);
-
   if (productsState.status == STATUS.ERROR ) {
     return <ErrorCompo msg={productsState?.err} /> 
   }
-
   return (
     <>
       {" "}

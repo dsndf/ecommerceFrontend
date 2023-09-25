@@ -2,7 +2,11 @@
 .wl-comp{
 
     height: auto;
-    padding: 0 80px;
+    padding: 0 0px;
+    display: flex;
+    /* text-align: center; */
+    flex-direction: column;
+    align-items: center;
 
 
 

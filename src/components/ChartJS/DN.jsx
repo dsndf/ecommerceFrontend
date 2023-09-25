@@ -11,7 +11,9 @@ ChartJS.register(ArcElement,Tooltip,Legend);
 const DN = ({outOfStock,inStock}) => {
   return (
     <div className='doughnut'>
+      <h2>Stocks</h2>
      <Doughnut  data={{
+    
       labels:["Out of Stock","InStock"],
       datasets:[{
        label:'Poll',

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Shipping.scss";
+import "../styles/Shipping.scss";  
 import { Country, State} from "country-state-city";
 import StepperCompo from "./StepperCompo";
 import { FaHome, FaCity} from "react-icons/fa";

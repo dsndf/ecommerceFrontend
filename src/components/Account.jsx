@@ -3,14 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { logout } from "../slices/userSlice";
 import "../styles/Account.scss";
+import { STATUS } from "../slices/productsSlice";
+import Loading from "./Loading";
 const Account = () => {
-  const { isAuthenticated, userData } = useSelector(
+  const { isAuthenticated, userData ,status} = useSelector(
     (state) => state.userReducer
   );
   const dispatch = useDispatch();
   const navigation = useNavigate();
   let joinAt = new Date(userData.createdAt);
   joinAt = joinAt.toDateString();
+if(status === STATUS.LOADING){
+   return <Loading/>
+}
   return (
     <>
       <div className="profile-cont">

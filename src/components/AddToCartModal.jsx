@@ -7,14 +7,21 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCartItems, setCartItemQuantity } from "../slices/cartSlice";
 
-
 const AddToCartModal = ({ close }) => {
   const { cart } = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
    let subtotal= cart.reduce((acc,v)=>{
         return  acc+v.price*v.quantity;
    },0);
-
+useEffect(()=>{
+  if(cart.length === 0){
+    close();
+  } 
+ document.body.style.overflowY = "hidden";
+ return ()=>{
+  document.body.style.overflowY="scroll";
+ }
+},[cart.length])
 
 
   return (
@@ -33,6 +40,7 @@ const AddToCartModal = ({ close }) => {
                     <img src={v.image.url} alt="img" />
                   </div>
                   <div className="pro-item-name">
+                    
                     <p>{ v.name.length<30?v.name:v.name.slice(0,10)}</p>
                     <div className="qty-input">
                       <button

@@ -1,4 +1,4 @@
-import React, {  useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './styles/App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Footer from './components/Footer';
@@ -27,7 +27,7 @@ import OrderPlaced from './components/OrderPlaced';
 import MyOrders from './components/MyOrders';
 import OrderDetail from './components/OrderDetail';
 
-import DashBoard from './components/DashBoard';
+import DashBoard from './components/Admin/DashBoard';
 import AdminPro from './components/Admin/AdminPro';
 import NewProduct from './components/Admin/NewProduct';
 import AdminOrders from './components/Admin/AdminOrders';
@@ -39,20 +39,29 @@ import AdminUserUpdate from './components/Admin/AdminUserUpdate';
 import AdminReview from './components/Admin/AdminReview';
 import AdminComp from './components/Admin/AdminComp';
 import AdminUpdateProduct from './components/Admin/AdminUpdateProduct';
+import NotFound from './components/NotFound';
 const server = process.env.REACT_APP_BACKEND_URL;
 const App = () => {
 
   const [stripeApiKey, setStripeApiKey] = useState("")
   const { isAuthenticated, userData } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
-
-  useMemo(async function () {
-    const { data } = await axios.get(`${server}/stripe/api/key`, { withCredentials: true });
-    setStripeApiKey(data.stripeApiKey);
-  }, [isAuthenticated]);
+  async function getStripeApiKey() {
+     try {
+      const { data } = await axios.get(`${server}/stripe/api/key`, { withCredentials: true });
+      setStripeApiKey(data.stripeApiKey);
+    }
+    catch (err) {
+      console.log("Please Log in");
+    }
+  }
   useEffect(() => {
-    dispatch(loadUser());
-  }, []);
+    if (!isAuthenticated) {
+      dispatch(loadUser());
+    }
+    getStripeApiKey();
+
+  }, [isAuthenticated]);
 
   return (
     <  >
@@ -102,7 +111,7 @@ const App = () => {
             <Protected isAuth={isAuthenticated} ><MyOrders /></Protected>
           } />
 
-
+ 
           <Route path='/order/:id' element={
             <Protected isAuth={isAuthenticated} >  <OrderDetail /></Protected>} />
           <Route path='/admin' element={
@@ -122,13 +131,14 @@ const App = () => {
             <Route path='update/order/:id' element={<Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<AdminOrderUpdate />} />}></Route>
             <Route path='update/user/:id' element={<Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<AdminUserUpdate />} />}></Route>
           </Route>
+          <Route path='*' element={<NotFound/>}></Route>
         </Routes>
 
         <Footer></Footer>
         <ToastContainer
 
-          position="top-right"
-          autoClose={5000}
+          position="top-center"
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

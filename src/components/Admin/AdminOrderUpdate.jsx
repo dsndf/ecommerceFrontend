@@ -85,7 +85,7 @@ dispatch(setOrderError(""));
                       style={{ width: "70px" }}
                       alt="image"
                     />
-                    <p>{v.name>50?v.name.slice(0,50)+"...":v.name}</p>
+                    <p>{ v.name.length<30?v.name:v.name.slice(0,10)}</p>
                     <h4>
                       {v.quantity} x ₹ {v.price} = ₹{v.quantity * v.price}
                     </h4>
@@ -95,7 +95,7 @@ dispatch(setOrderError(""));
           </div>
         </div>
             <div className="update-box">
-          <h1>Process Order</h1>
+          <h3>Process Order</h3>
 
           <select
             name=""

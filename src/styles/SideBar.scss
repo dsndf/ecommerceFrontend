@@ -38,7 +38,7 @@
      }
  
      .MuiTreeItem-label{
-      font-size: 14px;
+      font-size: 15px;
       color: rgb(0, 0, 0);
        padding:  20px 0 ;
 
@@ -62,7 +62,7 @@
      display: flex;
      color: rgb(0, 0, 0);
      align-items: center;
-     width: 78%;
+     width: 100%;
   
      transition: all 0.5s;
      &:hover{
@@ -78,17 +78,6 @@
     .side-bar{
 
         width: 100%;  
-        
-    
-         >a{
- 
-            font-size: 14px;
-     
-            }
-         .css-161j9ok-MuiTreeView-root .css-1g86id8-MuiTreeItem-content .MuiTreeItem-label {
-                font-size: 14px;
-              
-            }
           
         }
      

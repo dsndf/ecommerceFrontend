@@ -13,6 +13,11 @@ const WishList = ({ close }) => {
              if(!wishList.length){
                 close();
              }
+             document.body.style.overflowY = "hidden";
+             return ()=>{
+              document.body.style.overflowY="scroll";
+             }
+
        },[wishList.length])
 
 
@@ -47,7 +52,7 @@ const WishList = ({ close }) => {
         <div>
              
           <Link to={"/wishList"} className="org-btn">
-            VIEW WISHLIST
+            View Wishlist
           </Link>
         </div>
       </div>

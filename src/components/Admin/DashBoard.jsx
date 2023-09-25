@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-import DN from "./ChartJS/DN";
-import LineChart from "./ChartJS/LineChart";
-import "../styles/DashBoard.scss";
-import SideBar from "./SideBar";
+import DN from "../ChartJS/DN";
+import LineChart from "../ChartJS/LineChart";
+import "../../styles/DashBoard.scss";
+import SideBar from "../SideBar";
 import {useDispatch, useSelector} from 'react-redux';
-import { getAdminProducts } from "../slices/productsSlice";
+import { getAdminProducts } from "../../slices/productsSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import ErrorCompo from "./ErrorCompo";
+import ErrorCompo from "../ErrorCompo";
 const server=process.env.REACT_APP_BACKEND_URL;
 
 const DashBoard = () => {

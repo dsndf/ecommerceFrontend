@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { setStatus, STATUS } from "./productsSlice";
+import { STATUS } from "./productsSlice";
 
 import axios from 'axios'
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
     isUpdated: false
 }
 
-const server=process.env.REACT_APP_BACKEND_URL;
+const server = process.env.REACT_APP_BACKEND_URL;
 const ProductDetailSlice = createSlice({
 
     name: "productDetail",
@@ -32,7 +32,7 @@ const ProductDetailSlice = createSlice({
         setProductDetails(state, action) {
             state.product = action.payload;
         },
-        setDetailsStatus(state, action) {
+        setStatus(state, action) {
             state.status = action.payload;
         }
         ,
@@ -51,7 +51,7 @@ const ProductDetailSlice = createSlice({
 
 });
 
-export const { setIsRevieweDeleted, setProductReviews, setIsReviewed, setIsUpdated, setProductDetailsError, setProductDetails, setDetailsStatus } = ProductDetailSlice.actions;
+export const { setStatus, setIsRevieweDeleted, setProductReviews, setIsReviewed, setIsUpdated, setProductDetailsError, setProductDetails, setDetailsStatus } = ProductDetailSlice.actions;
 
 //thunk for get Reviews of  product
 
@@ -61,7 +61,7 @@ export function getProductReviews(ProId) {
         dispatch(setStatus(STATUS.LOADING));
         try {
 
-            const { data } = await axios.get(`${server}/admin/product/reviews?productId=${ProId}`,{withCredentials:true});
+            const { data } = await axios.get(`${server}/admin/product/reviews?productId=${ProId}`, { withCredentials: true });
             dispatch(setProductReviews(data.reviews));
             dispatch(setStatus(STATUS.IDLE));
 
@@ -76,14 +76,14 @@ export function getProductReviews(ProId) {
 
 }
 //thunk for review deletion 
-export function deleteProductReview(ProId,userId) {
+export function deleteProductReview(ProId, userId) {
 
     return async (dispatch, getState) => {
         dispatch(setStatus(STATUS.LOADING));
         try {
-        
- console.log(ProId,userId);
-            const { data } = await axios.delete(`${server}/admin/review?productId=${ProId}&user=${userId}`,{withCredentials:true});
+
+            console.log(ProId, userId);
+            const { data } = await axios.delete(`${server}/admin/review?productId=${ProId}&user=${userId}`, { withCredentials: true });
             dispatch(setIsRevieweDeleted(data.success));
             dispatch(setStatus(STATUS.IDLE));
 
@@ -105,25 +105,17 @@ export function fetchProductDetails(id) {
 
     return async (dispatch, getState) => {
 
-        dispatch(setDetailsStatus(STATUS.LOADING));
+        dispatch(setStatus(STATUS.LOADING));
 
         try {
 
-            const data = await (await fetch(`${server}/product/${id}`)).json();
-
-            if (!data.succes) {
-                throw new Error(data.message);
-            }
-
+            const {data} = await axios.get(`${server}/product/${id}`);
             dispatch(setProductDetails(data.product));
-
-            dispatch(setDetailsStatus(STATUS.IDLE));
-
-
+            dispatch(setStatus(STATUS.IDLE));
         }
         catch (err) {
-
-            dispatch(setDetailsStatus(STATUS.ERROR));
+            console.log(err.response.data.message);
+            dispatch(setStatus(STATUS.ERROR));
             dispatch(setProductDetailsError(err.response.data.message));
         }
 
@@ -135,15 +127,15 @@ export function fetchProductDetails(id) {
 
 export function productReview(myReview, id) {
     return async (dispatch, getState) => {
+        dispatch(setStatus(STATUS.LOADING));
         try {
 
-            const { data } = await axios.put(`${server}/review/product/${id}`, myReview,{withCredentials:true});
-
+            const { data } = await axios.put(`${server}/review/product/${id}`, myReview, { withCredentials: true });
             dispatch(setIsReviewed(true));
-
+            dispatch(setStatus(STATUS.IDLE));
         }
         catch (err) {
-            dispatch(setDetailsStatus(STATUS.ERROR));
+            dispatch(setStatus(STATUS.ERROR));
             dispatch(setProductDetailsError(err.response.data.message));
         }
 
@@ -162,10 +154,10 @@ export function productReview(myReview, id) {
 export function updateProduct(id, myform) {
 
     return async (dispatch, getState) => {
-        dispatch(setDetailsStatus("loading"));
+        dispatch(setStatus(STATUS.LOADING));
         try {
             const config = {
-                withCredentials:true,
+                withCredentials: true,
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -174,11 +166,12 @@ export function updateProduct(id, myform) {
 
             dispatch(setIsUpdated(true));
             dispatch(setProductDetails(data.message));
-            dispatch(setDetailsStatus("idle"));
+            dispatch(setStatus(STATUS.IDLE));
 
 
         }
         catch (err) {
+            dispatch(setStatus(STATUS.ERROR));
             dispatch(setProductDetailsError(err.response.data.message));
         }
 

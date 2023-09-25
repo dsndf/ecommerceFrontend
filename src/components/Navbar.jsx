@@ -53,7 +53,7 @@ const Navbar = ({ isAuth }) => {
             </Link>:null
 
           } 
-            <Link to={"/account"}>
+            <Link to={`${isAuth?'/account':'/login'}`}>
               {isAuthenticated ? (
                 <img src={userData?.avatar?.url} alt="" />
               ) : (

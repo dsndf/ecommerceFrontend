@@ -47,6 +47,7 @@ const OrderDetail = () => {
           <h1>Payment</h1>
         
           <p><span>Status:</span>{paymentInfo && paymentInfo.status}</p>
+          <p><span>Payment_ref:</span>{paymentInfo && paymentInfo.id}</p>
         
           <p><span>Amount:</span>₹{totalPrice}</p>
         </div>

@@ -1,17 +1,19 @@
+@import 'var';
 .Logloader{
 
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
+align-items: center;
     div{
-        border: 3px solid rgb(174 174 174);
+        border: 3px solid $webgreen;
         width: 60px;
         height: 60px;
         border-radius: 60%;
         border-top: none;
 border-bottom:none;
+border-left:none;
 animation-name: loading;
 animation-iteration-count: infinite;
 animation-fill-mode: both;

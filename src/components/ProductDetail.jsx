@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import Heading from "./Heading";
+import NotFound from "./NotFound";
 import { useEffect } from "react";
 import { GrAdd, GrSubtract } from "react-icons/gr";
 import { BsFillCartCheckFill } from "react-icons/bs";
@@ -7,7 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiHeart } from "react-icons/bi";
 import Loader from "./Loader";
 import { useParams } from "react-router-dom";
-import { fetchProductDetails, setIsReviewed, setProductDetails, setProductDetailsError } from "../slices/ProDetailSlice";
+import {
+  fetchProductDetails,
+  setIsReviewed,
+  setProductDetailsError,
+} from "../slices/ProDetailSlice";
 import { STATUS } from "../slices/productsSlice";
 import Loading from "./Loading";
 import ReactStars from "react-rating-stars-component";
@@ -22,9 +27,8 @@ import { setwishList } from "../slices/wishListSlice";
 import WishList from "./WishList";
 import ReviewBox from "./ReviewBox";
 import axios from "axios";
-import RelatedProduct from "./RelatedProduct"; 
-import ErrorCompo from "./ErrorCompo";
- const server=process.env.REACT_APP_BACKEND_URL;
+import RelatedProduct from "./RelatedProduct";
+const server = process.env.REACT_APP_BACKEND_URL;
 const ProductDetail = () => {
   const [cartModalState, setCartModalState] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -36,16 +40,13 @@ const ProductDetail = () => {
   const { cart } = cartState;
   const { id } = useParams();
   const productDetails = useSelector((state) => state.productDetailReducer);
-  const { products ,err} = useSelector((state) => state.productReducer);
-  const { isReviewed, product } = productDetails;
-
-
+  const { isReviewed ,err } = productDetails;
   function openModal(e) {
     document.body.style.overflowY = "hidden";
     setModal(true);
   }
   function closeModal(e) {
-    setModal(false);
+  setModal(false);
     document.body.style.overflowY = "scroll";
   }
   async function getRelatedProducts(id) {
@@ -111,21 +112,16 @@ const ProductDetail = () => {
       toast.success("Your review has been submitted");
       dispatch(setIsReviewed(false));
     }
-    if(productDetails.err){
-
-        toast.error(productDetails.err==="jwt expired"?"Please Login":productDetails.err);
-        dispatch(setProductDetailsError(""));
-    }
-
     dispatch(fetchProductDetails(id));
     getRelatedProducts(id);
-  }, [isReviewed, id,productDetails.err]);
+  }, [isReviewed]);
 
   if (productDetails.status === STATUS.LOADING) {
     return <Loading></Loading>;
   }
-  
-
+ if(productDetails.status === STATUS.ERROR && err === "Product not found"){
+  return <NotFound/>
+ }
   return (
     <div>
       {cartModalState ? (
@@ -258,10 +254,10 @@ const ProductDetail = () => {
       {reviews?.length !== 0 ? (
         <section className="review-sec">
           {reviews &&
-            reviews.map((v,ind) => {
+            reviews.map((v, ind) => {
               return (
                 <ReviewBox
-                key={ind}
+                  key={ind}
                   name={v?.name}
                   rating={v?.rating}
                   review={v?.comment}
@@ -277,32 +273,30 @@ const ProductDetail = () => {
       )}
 
       <Heading text={"Related Products"}></Heading>
-{
-  !loading&&relatedProducts.length? <section className="related-products">
-       
-        {!loading &&
-          relatedProducts.map((e,ind) => (
-            <RelatedProduct key={ind}
-              id={e._id}
-              rating={e.rating}
-              name={e.name}
-              price={e.price}
-              url={e?.images?.[0]?.url}
-            />
-          ))}
-      </section>:<section style={{height:"200px"}}>
-      { loading&& (
-            <Loader style={{flexDirection:"row"}} />
-
-        )}
-        {!loading&& relatedProducts.length === 0 && (
-          <h2 style={{ color: "grey", textAlign: "center" }}>
-            No Related Product Found!
-          </h2>
-        )}
-      </section>
-}
-    
+      {!loading && relatedProducts.length ? (
+        <section className="related-products">
+          {!loading &&
+            relatedProducts.map((e, ind) => (
+              <RelatedProduct
+                key={ind}
+                id={e._id}
+                rating={e.rating}
+                name={e.name}
+                price={e.price}
+                url={e?.images?.[0]?.url}
+              />
+            ))}
+        </section>
+      ) : (
+        <section style={{ height: "200px" }}>
+          {loading && <Loader style={{ flexDirection: "row" }} />}
+          {!loading && relatedProducts.length === 0 && (
+            <h2 style={{ color: "grey", textAlign: "center" }}>
+              No Related Product Found!
+            </h2>
+          )}
+        </section>
+      )}
     </div>
   );
 };

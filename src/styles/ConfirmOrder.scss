@@ -162,7 +162,7 @@ background-color: #fff;
      background-color: #fcfcfc;
       .c1 {
   
-      
+      height: auto;
         padding: 25px 22px;
         width: 100%;
         border-radius: 3px;
@@ -210,12 +210,11 @@ background-color: #fff;
             margin: 15px 0;
             align-items: center;
   
-            
-            h4,h5{
-              font-size: 12px;
-      
+             h5{
+              width: 60px;
+    
+             }   
             }
-          }
         }
       }
   
