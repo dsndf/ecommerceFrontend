@@ -21,7 +21,7 @@ const Products = () => {
   const [rating, setRating] = useState(0);
   const [state, setState] = useState(0);
   const [sortBy, setSortBy] = useState("");
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const toggleFilter = () => {
     if (!toggle) {
       document.querySelector(".filterBox").style.transform = "translateX(0%)";
