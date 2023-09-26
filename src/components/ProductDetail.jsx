@@ -23,11 +23,12 @@ import "../styles/ProductDetail.scss";
 import Modal from "./ReviewModal/Modal";
 import Main from "./Slider/Main";
 import AddToCartModal from "./AddToCartModal";
-import { setwishList } from "../slices/wishListSlice";
+import { removewishListItems, setwishList } from "../slices/wishListSlice";
 import WishList from "./WishList";
 import ReviewBox from "./ReviewBox";
 import axios from "axios";
 import RelatedProduct from "./RelatedProduct";
+import { AiFillHeart } from "react-icons/ai";
 const server = process.env.REACT_APP_BACKEND_URL;
 const ProductDetail = () => {
   const [cartModalState, setCartModalState] = useState(false);
@@ -37,13 +38,18 @@ const ProductDetail = () => {
   const [modal, setModal] = useState(false);
   const [wLToggle, setWlToggle] = useState(false);
   const cartState = useSelector((state) => state.cartReducer);
+  const { wishList } = useSelector((state) => state.wishListReducer);
   const { cart } = cartState;
   const { id } = useParams();
   const productDetails = useSelector((state) => state.productDetailReducer);
+  
   const { isReviewed ,err } = productDetails;
   function openModal(e) {
     document.body.style.overflowY = "hidden";
     setModal(true);
+  }
+  function itemInWishList(id){
+    return wishList.some((v)=>v.product===id);
   }
   function closeModal(e) {
   setModal(false);
@@ -96,11 +102,10 @@ const ProductDetail = () => {
     setCartModalState(true);
   };
 
-  let tog = useMemo(() => {
+  let inCart = useMemo(() => {
     const getproduct = cart.find((v) => {
       return v.product === id;
     });
-
     if (!getproduct) {
       return false;
     }
@@ -209,7 +214,7 @@ const ProductDetail = () => {
                     <GrAdd />
                   </button>
                 </div>
-                {tog === true ? (
+                {inCart === true ? (
                   <button
                     className="InCart "
                     onClick={() => setCartModalState(true)}
@@ -232,7 +237,10 @@ const ProductDetail = () => {
             </div>
             <div className="pro-watch-list">
               <p>Add to WishList</p>
-              <BiHeart onClick={addToWL} />
+              {
+                 itemInWishList(id)?<AiFillHeart style={{fill:"#f83e3e"}} onClick={()=>dispatch(removewishListItems(id))} />:<BiHeart onClick={addToWL} />
+              }
+              
             </div>
             <p>
               Status:

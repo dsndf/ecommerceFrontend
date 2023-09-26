@@ -34,7 +34,6 @@ const Products = () => {
       setToggle(false);
     }
   };
-  const closeFilter = () => {};
 
   let categories = ["Laptop", "Watch", "MiPhone", "RedmiPhone", "T-Shirt"];
   const setCurrentPageNo = (e) => {
@@ -47,10 +46,19 @@ const Products = () => {
   const productsState = useSelector((state) => state.productReducer);
   const { products, resultPerPage, counts, availableProducts } = productsState;
   useEffect(() => {
-     dispatch(fetchProducts( keyword,category !== "" ? 1 : currentPage,price,category,rating,sortBy));
+    dispatch(
+      fetchProducts(
+        keyword,
+        category !== "" ? 1 : currentPage,
+        price,
+        category,
+        rating,
+        sortBy
+      )
+    );
   }, [dispatch, keyword, currentPage, price, category, rating, sortBy]);
-  if (productsState.status == STATUS.ERROR ) {
-    return <ErrorCompo msg={productsState?.err} /> 
+  if (productsState.status == STATUS.ERROR) {
+    return <ErrorCompo msg={productsState?.err} />;
   }
   return (
     <>
@@ -114,8 +122,6 @@ const Products = () => {
               <ul>
                 <li
                   onClick={(e) => {
-                    //  window.location.assign('/products
-
                     setCategory("");
                   }}
                 >
@@ -128,6 +134,7 @@ const Products = () => {
                       key={ind}
                       onClick={(e) => {
                         setCategory(v);
+                        setState(ind + 1);
                       }}
                     >
                       {v}
@@ -142,7 +149,6 @@ const Products = () => {
               <ReactStars
                 edit={true}
                 onChange={(e) => {
-           
                   setRating(e);
                 }}
                 value={rating}
@@ -158,8 +164,7 @@ const Products = () => {
         <div className="Allproducts">
           {productsState.status == STATUS.LOADING ? (
             <Loading></Loading>
-          ) : (
-            products.length?
+          ) : products.length ? (
             products.map((v, ind) => {
               return (
                 <ProductBox
@@ -173,7 +178,9 @@ const Products = () => {
                   desc={v.desc}
                 ></ProductBox>
               );
-            }):<h2 className="message">No Product Found!</h2>
+            })
+          ) : (
+            <h2 className="message">No Product Found!</h2>
           )}
         </div>
       </div>

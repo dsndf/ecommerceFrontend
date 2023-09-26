@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles/App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Footer from './components/Footer';
@@ -57,9 +57,9 @@ const App = () => {
       console.log("Please Log in");
     }
   }
-  addEventListener("contextmenu", (e) => e.preventDefault());
-  useEffect(() => {
 
+  useEffect(() => {
+    window.addEventListener("contextmenu",(e)=>e.preventDefault());
     if (!isAuthenticated) {
       dispatch(loadUser());
     }
