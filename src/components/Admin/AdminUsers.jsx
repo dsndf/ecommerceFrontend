@@ -52,7 +52,7 @@ const AdminUsers = () => {
             </Link>
             <Link
               onClick={() => {
-                if(params.getValue(params.id,"role") === "admin"){
+                if(params.getValue(params.id,"id") === usersData._id ){
                   toast.info("You Cannot Delete Yourself");
                   return;
                 }

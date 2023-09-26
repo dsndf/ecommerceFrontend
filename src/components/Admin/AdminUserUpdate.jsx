@@ -41,7 +41,8 @@ const AdminUserUpdate = () => {
     }
     if (_id !== id) {
       dispatch(getAdminUserData(id));
-    } else {
+    }
+     else {
       setRole(role);
       setuserEmail(email);
       setuserName(name);
@@ -92,10 +93,10 @@ const AdminUserUpdate = () => {
             </div>
             <div className="ipdiv">
               <MdVerifiedUser />
-              <select name="" id="" onChange={(e) => setRole(e.target.value)}>
-                <option value={userRole}> {userRole} </option>
-                <option value={userRole == "user" ? "admin" : "user"}>
-                  {userRole == "user" ? "admin" : "user"}
+              <select name="" id=""  value={userRole} onChange={(e) =>setRole(e.target.value)}>
+                <option selected  value={userRole}> {userRole} </option>
+                <option value={userRole === "user" ? "admin" : "user"}>
+                  {userRole === "user" ? "admin" : "user"}
                 </option>
               </select>
             </div>
