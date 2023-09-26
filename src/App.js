@@ -59,7 +59,7 @@ const App = () => {
   }
 
   useEffect(() => {
-  // window.addEventListener("contextmenu",(e)=>e.preventDefault());
+    window.addEventListener("contextmenu",(e)=>e.preventDefault());
     if (!isAuthenticated) {
       dispatch(loadUser());
     }

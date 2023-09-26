@@ -1,7 +1,7 @@
 import "../../styles/AdminPro.scss";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsDeleted, STATUS } from "../../slices/productsSlice";
+import {STATUS} from "../../slices/productsSlice";
 import Loading from "../Loading";
 import icons from "../../icons";
 import { DataGrid } from "@mui/x-data-grid";
@@ -10,14 +10,16 @@ import { toast } from "react-toastify";
 import {
   deleteUser,
   getAdminUsersData,
+  setIsDeleted,
   setUserError,
 } from "../../slices/userSlice";
 const AdminUsers = () => {
   const { status, usersData, isDeleted, err } = useSelector(
     (state) => state.userReducer
   );
+  const {userData} = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
-  const gridColumns = [
+  const gridColumns = [ 
     { field: "id", headerName: "USER ID", minWidth: 200, flex: 1 },
     { field: "name", headerName: "NAME", minWidth: 150, flex: 0.5 },
     {
@@ -52,7 +54,7 @@ const AdminUsers = () => {
             </Link>
             <Link
               onClick={() => {
-                if(params.getValue(params.id,"id") === usersData._id ){
+                if(params.getValue(params.id,"id") === userData._id ){
                   toast.info("You Cannot Delete Yourself");
                   return;
                 }
@@ -82,7 +84,7 @@ const AdminUsers = () => {
       toast.error(err);
       dispatch(setUserError(""));
     }
-    if (isDeleted === true) {
+    if (isDeleted) {
       toast.success("User Deleted Successfully");
       dispatch(setIsDeleted(false));
     }
