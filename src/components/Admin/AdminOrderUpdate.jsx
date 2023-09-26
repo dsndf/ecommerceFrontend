@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import "../../styles/OrderDetail.scss";
 import "../../styles/orderupdate.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   getOrderDetails,
   setIsOrderUpdated,
@@ -26,6 +26,11 @@ const AdminOrderUpdate = () => {
   const [state, setState] = useState("");
 
   useEffect(() => {
+if(isOrderUpdated){
+  toast.success("Order Status Updated Successfully");
+  dispatch(setIsOrderUpdated(false));
+}
+
   if(orderDetailState.err){
     toast.error(orderDetailState.err);
 dispatch(setOrderError(""));

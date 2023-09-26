@@ -1,18 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct, setIsCreated } from "../../slices/newProductSlice";
 import { FaProductHunt } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
 import { AiOutlineStock } from "react-icons/ai";
 import { ImPriceTags } from "react-icons/im";
 import { TbFileDescription } from "react-icons/tb";
 import "../../styles/updateProduct.scss";
-import SideBar from "../SideBar";
 import {
   fetchProductDetails,
   setIsUpdated,
-  setProductDetails,
   setProductDetailsError,
   updateProduct,
 } from "../../slices/ProDetailSlice";
@@ -95,7 +92,7 @@ const AdminUpdateProduct = () => {
       setImagePreview(product.images.map((v) => v.url));
     }
     if (isUpdated) {
-      toast.success("Updation successfully done");
+      toast.success("Product Updated successfully");
       dispatch(fetchProductDetails(id));
       dispatch(setIsUpdated(false));
      

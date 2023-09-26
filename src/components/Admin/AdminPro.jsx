@@ -13,8 +13,7 @@ import Loading from "../Loading";
 import icons from "../../icons";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import SideBar from "../SideBar";
-import ErrorCompo from "../ErrorCompo";
+
 
 const AdminPro = () => {
   const { status, allProducts, isDeleted, err } = useSelector(
@@ -85,12 +84,16 @@ const AdminPro = () => {
     );
   }, [allProducts]);
   useEffect(() => {
+    if(isDeleted){
+      toast.success("Product Deleted Successfully");
+      dispatch(setIsDeleted(false));
+    }
     if (err) {
       toast.error(err);
       dispatch(setError(""));
     }
     dispatch(getAdminProducts());
-    dispatch(setIsDeleted(false));
+  
   }, [isDeleted, err]);
 
   if (status === "loading") {

@@ -1,9 +1,7 @@
 import "../../styles/AdminPro.scss";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleteProduct,
-  getAdminProducts,
   setIsDeleted,
   STATUS,
 } from "../../slices/productsSlice";
@@ -12,15 +10,12 @@ import icons from "../../icons";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-
 import { deleteUser, getAdminUsersData, setUserError } from "../../slices/userSlice";
-
 const AdminUsers = () => {
   const { status, usersData, isDeleted,err } = useSelector(
     (state) => state.userReducer
   );
   const dispatch = useDispatch();
-
   const gridColumns = [
       { field: "id", headerName: "USER ID", minWidth: 200, flex: 1 },
       { field: "name", headerName: "NAME", minWidth: 150, flex: 0.5 },
@@ -82,6 +77,7 @@ const AdminUsers = () => {
       dispatch(setUserError(""));
     }
      if (isDeleted) {
+      toast.success("User Deleted Successfully");
       dispatch(setIsDeleted(false));
     }
     dispatch(getAdminUsersData());

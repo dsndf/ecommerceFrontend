@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 import {
   adminUserUpdate,
   getAdminUserData,
-  getAdminUsersData,
   loadUser,
   setIsAdminUserUpdated,
   setUserError,
@@ -30,16 +29,15 @@ const AdminUserUpdate = () => {
   const { id } = useParams();
   const navigation = useNavigate();
   useEffect(() => {
-    if(err){
+    if (err) {
       toast.error(err);
       dispatch(setUserError(""));
     }
     if (isAdminUserUpdated) {
       dispatch(setIsAdminUserUpdated(false));
       dispatch(loadUser());
-      toast.success("User Successfully Updated");
+      toast.success("User Updated Successfully ");
       navigation("/admin/users");
-
     }
     if (_id !== id) {
       dispatch(getAdminUserData(id));
@@ -48,7 +46,7 @@ const AdminUserUpdate = () => {
       setuserEmail(email);
       setuserName(name);
     }
-  }, [userState.adminUserDetails, isAdminUserUpdated,err]);
+  }, [userState.adminUserDetails, isAdminUserUpdated, err]);
   const updateUser = (e) => {
     e.preventDefault();
     let myForm = new FormData();

@@ -4,7 +4,6 @@ import SideBar from "../SideBar";
 import { Outlet } from "react-router-dom";
 const AdminComp = () => {
  
- 
   return (
     <div className="admin-comp">
       <SideBar />

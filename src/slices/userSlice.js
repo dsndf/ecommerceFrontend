@@ -17,6 +17,7 @@ const initialState = {
     isUpdated: false,
     isDeleted: false,
     isLogin: false,
+    isLogout:false,
     isRegister: false,
     isPasswordUpdate: false,
     forgotRequest: false,
@@ -63,6 +64,9 @@ const userSlice = createSlice({
         setLoginStatus(state, action) {
             state.isLogin = action.payload;
         },
+        setLogoutStatus(state, action) {
+            state.isLogin = action.payload;
+        },
         setRegisterStatus(state, action) {
             state.isRegister = action.payload;
         },
@@ -81,7 +85,7 @@ const userSlice = createSlice({
 
 });
 
-export const { setIsDeleted, setAdminUserDetails, setIsAdminUserUpdated, setUsersData, setAuth, setUserData, setForgotRequest, setForgotResponse, setStatus, setUpdateStatus, setRegisterStatus, setUpdatePassword, setUserError, setLoginStatus } = userSlice.actions;
+export const {setLogoutStatus ,setIsDeleted, setAdminUserDetails, setIsAdminUserUpdated, setUsersData, setAuth, setUserData, setForgotRequest, setForgotResponse, setStatus, setUpdateStatus, setRegisterStatus, setUpdatePassword, setUserError, setLoginStatus } = userSlice.actions;
 
 //thunk for get all users data
 
@@ -203,7 +207,7 @@ export function registerUser(userForm) {
     }
 
 }
-// thunk middleware  to load user if he is login]
+// thunk middleware  to load user if he is login
 
 export function loadUser() {
 
@@ -246,6 +250,7 @@ export function logout() {
             dispatch(setUserData({}));
             dispatch(setAuth(false));
             dispatch(setStatus(STATUS.IDLE));
+            dispatch(setLogoutStatus(true));
             dispatch(setUserError(""));
 
 

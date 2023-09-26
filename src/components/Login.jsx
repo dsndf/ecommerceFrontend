@@ -9,6 +9,7 @@ import {
   fetchUser,
   registerUser,
   setLoginStatus,
+  setLogoutStatus,
   setRegisterStatus,
   setUserError,
 } from "../slices/userSlice";
@@ -20,7 +21,7 @@ import Loader from "./Loader";
 const Login = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userReducer);
-  const { isLogin, status, isRegister, err } = userState;
+  const { isLogin, status,isLogout,isRegister, err } = userState;
   const navigation = useNavigate();
   const [avatar, setAvatar] = useState("");
   const [userData, setUserData] = useState({
@@ -49,6 +50,11 @@ const Login = () => {
   };
 
   useEffect(() => {
+    if(isLogout){
+      toast.success("Logged out Successfully");
+      dispatch(setLogoutStatus(false));
+      return;
+    }
     if (isLogin) {
       toast.success("Logged In Successfully");
       dispatch(setLoginStatus(false));

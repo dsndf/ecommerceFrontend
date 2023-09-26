@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Doughnut } from "react-chartjs-2";
 import DN from "../ChartJS/DN";
 import LineChart from "../ChartJS/LineChart";
 import "../../styles/DashBoard.scss";
-import SideBar from "../SideBar";
-import {useDispatch, useSelector} from 'react-redux';
-import { getAdminProducts } from "../../slices/productsSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
-
-import ErrorCompo from "../ErrorCompo";
+import Loading from "../Loading";
 const server=process.env.REACT_APP_BACKEND_URL;
 
 const DashBoard = () => {
 
 const [stats,setStats] = useState({});
 const [err,setError] = useState(false);
+const [loading,setLoading] = useState(false);
+
 async function getStats(){
+  setLoading(true);
     try{
         const {data} =   await axios.get(`${server}/admin/stats`,{withCredentials:true});
      setStats(data);
+     setLoading(false);
     }
     catch(error){
       setError(error.response.data.message);
@@ -34,8 +33,9 @@ async function getStats(){
     }
      getStats();
    },[err])
-  
-
+  if(loading){
+    return <Loading/>
+  }
   return (
       <div className="main-dashboard admin-box ">
         <div className="dashboard-highlights">

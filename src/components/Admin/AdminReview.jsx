@@ -89,6 +89,7 @@ const AdminReview = () => {
 
   useEffect(() => {
     if (isReviewDeleted) {
+      toast.success("Review Deleted Successfully");
       dispatch(getProductReviews(productId));
       dispatch(setIsRevieweDeleted(false));
     }

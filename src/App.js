@@ -49,7 +49,7 @@ const App = () => {
   const { isAuthenticated, userData } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   async function getStripeApiKey() {
-     try {
+    try {
       const { data } = await axios.get(`${server}/stripe/api/key`, { withCredentials: true });
       setStripeApiKey(data.stripeApiKey);
     }
@@ -78,8 +78,8 @@ const App = () => {
           <Route path='/product/:id' element={<ProductDetail></ProductDetail>}></Route>
           <Route path='/products/:keyword' element={<Products></Products>} />
           <Route path='/products' element={<Products></Products>} />
-          <Route path='/contact' element={<Contact/>} />
-          <Route path='/about' element={<About/>} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/about' element={<About />} />
           <Route path='/Search' element={<Search></Search>} />
           <Route path='/login' element={<Login></Login>} />
           <Route path='/account' element={
@@ -115,7 +115,7 @@ const App = () => {
             <Protected isAuth={isAuthenticated} ><MyOrders /></Protected>
           } />
 
- 
+
           <Route path='/order/:id' element={
             <Protected isAuth={isAuthenticated} >  <OrderDetail /></Protected>} />
           <Route path='/admin' element={
@@ -135,7 +135,7 @@ const App = () => {
             <Route path='update/order/:id' element={<Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<AdminOrderUpdate />} />}></Route>
             <Route path='update/user/:id' element={<Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<AdminUserUpdate />} />}></Route>
           </Route>
-          <Route path='*' element={<NotFound/>}></Route>
+          <Route path='*' element={<NotFound />}></Route>
         </Routes>
 
         <Footer></Footer>

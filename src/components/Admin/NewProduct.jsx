@@ -3,7 +3,7 @@ import "../../styles/NewProduct.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, setCreateProductError, setIsCreated } from "../../slices/newProductSlice";
-import SideBar from "../SideBar";
+
 
 import { FaProductHunt } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
@@ -12,6 +12,7 @@ import { ImPriceTags } from "react-icons/im";
 import { TbFileDescription } from "react-icons/tb";
 import { STATUS } from "../../slices/productsSlice";
 import Loader from "../Loader";
+import { toast } from "react-toastify";
 const NewProduct = () => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
@@ -74,8 +75,9 @@ const NewProduct = () => {
       dispatch(setCreateProductError(""));
     }
     if (isCreated) {
-      navigation("/admin/dashboard");
+      toast.success("Product Created Successfully"); 
       dispatch(setIsCreated(false));
+      navigation("/admin/dashboard");
     }
 
   }, [isCreated,err]);

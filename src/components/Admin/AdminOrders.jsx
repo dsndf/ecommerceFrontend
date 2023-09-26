@@ -5,7 +5,7 @@ import Loading from "../Loading";
 import icons from "../../icons";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import SideBar from "../SideBar";
+
 import { toast } from "react-toastify";
 
 import {
@@ -81,14 +81,16 @@ const AdminOrders = () => {
         };
       });
   useEffect(() => {
+    if(isOrderDeleted){
+      toast.success("Order Deleted Successfully");
+      dispatch(setIsOrderDeleted(false));
+    }
     if(err){
       toast.error(err);
       dispatch(setOrdersError(""));
     }
-    dispatch(setIsOrderDeleted(false));
     dispatch(getAllOrders());
     document.querySelector(".nav-cont").style.backgroundColor = "#fff";
-
     return () => {
       document.querySelector(".nav-cont").style.backgroundColor = "transparent";
     };
