@@ -40,7 +40,13 @@ padding: 0 10px;
   
 display: flex;
 flex-direction: column;
-
+h3{
+   font-size: 19px;
+   font-weight: 500;
+}
+h4{
+   font-weight: 500;
+}
 svg{
    position: absolute;
    right: 10px;
@@ -91,7 +97,8 @@ svg{
 }
 div>ul{
 list-style:none;
-li{
+
+li{font-weight: 500;
    font-size: 15px;
    margin: 5px 0px;
    cursor: pointer;
@@ -172,14 +179,14 @@ list-style: none;
        z-index: 10;
        left: 0;
        top: 0px;
-   justify-content: center;
+   justify-content: start;
       bottom: 0;
       overflow-y: scroll;
       transform: translateX(-100%);
       transition: all 0.5s;
       height: auto;
 
-      
+   padding:15px  ;      
       }
     
       

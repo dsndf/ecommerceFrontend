@@ -40,6 +40,8 @@ import AdminReview from './components/Admin/AdminReview';
 import AdminComp from './components/Admin/AdminComp';
 import AdminUpdateProduct from './components/Admin/AdminUpdateProduct';
 import NotFound from './components/NotFound';
+import Contact from './components/Contact';
+import About from './components/About';
 const server = process.env.REACT_APP_BACKEND_URL;
 const App = () => {
 
@@ -76,6 +78,8 @@ const App = () => {
           <Route path='/product/:id' element={<ProductDetail></ProductDetail>}></Route>
           <Route path='/products/:keyword' element={<Products></Products>} />
           <Route path='/products' element={<Products></Products>} />
+          <Route path='/contact' element={<Contact/>} />
+          <Route path='/about' element={<About/>} />
           <Route path='/Search' element={<Search></Search>} />
           <Route path='/login' element={<Login></Login>} />
           <Route path='/account' element={

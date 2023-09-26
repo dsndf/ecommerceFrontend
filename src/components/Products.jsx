@@ -54,7 +54,6 @@ const Products = () => {
   }
   return (
     <>
-      {" "}
       <div className="sort-box" onChange={(e) => setSortBy(e.target.value)}>
         {window.outerWidth <= 768 ? (
           <IoFilter onClick={toggleFilter} />
@@ -143,11 +142,11 @@ const Products = () => {
               <ReactStars
                 edit={true}
                 onChange={(e) => {
-                  console.log(e);
+           
                   setRating(e);
                 }}
                 value={rating}
-                activeColor="rgb(255 226 22)"
+                activeColor="rgb(238, 143, 42)"
                 color={"rgba(185, 185, 185, 0.47)"}
                 size={window.innerWidth < 600 ? 20 : 25}
                 isHalf={true}

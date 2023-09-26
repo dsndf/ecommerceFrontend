@@ -1,7 +1,8 @@
 @import 'var';
 @import 'mixin';
+
 .main-payment-cont{
-   
+   height: 100vh;
     .paymentContainer {
     margin: 20px 0px;
     display: flex;

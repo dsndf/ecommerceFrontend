@@ -12,13 +12,17 @@ const Modal = ({ closeModal }) => {
   function getRating(newRating) {
     setRating(newRating);
   }
-  const { userData } = useSelector((state) => state.userReducer);
+  const { userData ,isAuthenticated} = useSelector((state) => state.userReducer);
   const { name } = userData;
   
   const dispatch = useDispatch();
   const submitReview = () => {
      if(textArea === ""){
       toast.info("Review is required");
+      return;
+     }
+     if(!isAuthenticated){
+      toast.error("Please Login");
       return;
      }
     const myReview = new FormData();
@@ -39,7 +43,7 @@ const Modal = ({ closeModal }) => {
             <h4>Rating:</h4>
             <ReactStars
               classNames={"star"}
-              activeColor="rgb(255 226 22)"
+              activeColor="rgb(238, 143, 42)"
               size={window.innerWidth < 600 ? 20 : 25}
               isHalf={true}
               color={"rgba(185, 185, 185, 0.47)"}

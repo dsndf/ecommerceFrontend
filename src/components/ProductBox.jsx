@@ -32,7 +32,7 @@ const ProductBox = ({ id, image, name, desc, price, numOfReviews, rating }) => {
             <ReactStars
               edit={false}
               activeColor="#ee8f2a"
-              size={window.innerWidth <= 500 ? 15 : 25}
+              size={window.innerWidth <= 500 ? 23 : 25}
               value={rating}
               color={"rgb(185 185 185 / 47%)"}
               isHalf={true}

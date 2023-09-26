@@ -27,21 +27,22 @@
         h5,
         small {
             color: rgb(0, 0, 0);
-            font-size: 12px;
+            font-size: 15px;
+            font-weight: 500;
         }
 
         h4 {
           
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 600;
 
         }
 
         >div:last-child {
             margin-top: 5px;
-         
-            color: #000000;
-            font-size: 17px;
-            font-weight:500;
+            color: #c70000;
+            font-size: 22px;
+            font-weight: 500;
         }
     }
 
@@ -68,42 +69,5 @@ a {
 }
 
 @media screen and (max-width:"600px") {
-    .product {
-        width: 150px;
-        .pro-detail {
-            h5,
-            small {
-                font-size: 8px;
-            }
     
-            h4 {
-              
-                font-size: 14px;
-    
-            }
-    
-            >div:last-child {
-                margin-top: 5px;
-                color: #000000;
-                font-size: 17px;
-                font-weight:500;
-            }
-        }
-    
-        //    font-family: "Raleway";
-    
-    
-        img {
-            width: 100%;
-    
-        }
-    
-        &:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 20px #d7d7d7;
-    
-        }
-    
-    
-    }
 }
