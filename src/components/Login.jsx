@@ -63,6 +63,7 @@ const Login = () => {
     if (isRegister) {
       toast.success("Registered Successfully");
       dispatch(setRegisterStatus(false));
+      navigation('/account');
     }
     if (err != "") {
       toast.error(err);

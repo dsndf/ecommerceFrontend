@@ -21,7 +21,7 @@ if(status === STATUS.LOADING){
       <div className="profile-cont">
         <div className="profile-data">
           <h1>Account</h1>
-          <div>
+          <div className="user-photo">
             <h3>Profile Photo</h3>
             <img src={userData?.avatar?.url} alt="" />
           </div>
