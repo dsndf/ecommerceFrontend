@@ -57,8 +57,9 @@ const App = () => {
       console.log("Please Log in");
     }
   }
+  addEventListener("contextmenu", (e) => e.preventDefault());
   useEffect(() => {
-   addEventListener("contextmenu",(e)=>e.preventDefault());
+
     if (!isAuthenticated) {
       dispatch(loadUser());
     }
