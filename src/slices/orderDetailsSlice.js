@@ -47,7 +47,7 @@ export function getOrderDetails(id) {
 
     }
     catch (err) {
-      dispatch(setOrderStatus(STATUS.ERROR));
+    dispatch(setOrderStatus(STATUS.ERROR)) ;
       dispatch(setOrderError(err.response.data.message));
     }
 
@@ -61,17 +61,19 @@ export function getOrderDetails(id) {
 export function updateOrderStatus(orderId,orderStatus) {
 
   return async (dispatch, getState) => {
-
+dispatch(setOrderStatus(STATUS.LOADING))
 
     try {
       const { data } = await axios.put(`${server}/admin/order/${orderId}`,{status:orderStatus},{withCredentials:true} );
 
       dispatch(setIsOrderUpdated(true));
       dispatch(setOrderDetails(data.order));
+      dispatch(setOrderStatus(STATUS.IDLE))
 
     }
 
     catch (err) {
+      dispatch(setOrderStatus(STATUS.ERROR));   
       dispatch(setOrderError(err.response.data.message));
     }
 
