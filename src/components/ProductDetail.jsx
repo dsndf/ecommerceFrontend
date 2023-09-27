@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+byimport React, { useMemo } from "react";
 import Heading from "./Heading";
 import NotFound from "./NotFound";
 import { useEffect } from "react";
@@ -119,7 +119,7 @@ const ProductDetail = () => {
     }
     dispatch(fetchProductDetails(id));
     getRelatedProducts(id);
-  }, [isReviewed]);
+  }, [isReviewed,id]);
 
   if (productDetails.status === STATUS.LOADING) {
     return <Loading></Loading>;
