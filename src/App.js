@@ -85,7 +85,7 @@ const App = () => {
           <Route path='/Search' element={<Search></Search>} />
           <Route path='/login' element={<Login></Login>} />
           <Route path='/account' element={
-            <Protected isAuth={true}>
+            <Protected isAuth={isAuthenticated} >
               <Account />
             </Protected>
           } />
