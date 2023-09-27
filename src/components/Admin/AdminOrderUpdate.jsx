@@ -16,7 +16,7 @@ import Loading from "../Loading";
 const AdminOrderUpdate = () => {
   const { cart, shippingInfo } = useSelector((state) => state.cartReducer);
   const orderDetailState = useSelector((state) => state.orderDetailsReducer);
-  const { isOrderUpdated } = orderDetailState;
+  const { isOrderUpdated ,err} = orderDetailState;
 
   const { paymentInfo, orderStatus, totalPrice, _id, orderItems } =
     orderDetailState.order;
@@ -31,7 +31,7 @@ if(isOrderUpdated){
   dispatch(setIsOrderUpdated(false));
 }
 
-  if(orderDetailState.err){
+  if(err){
     toast.error(orderDetailState.err);
 dispatch(setOrderError(""));
     }
@@ -43,7 +43,7 @@ dispatch(setOrderError(""));
     return () => {
       document.querySelector(".nav-cont").style.backgroundColor = "transparent";
     };
-  }, [orderStatus, isOrderUpdated]);
+  }, [err,isOrderUpdated]);
   if (orderDetailState.status === STATUS.LOADING) {
     return <Loading />;
   }
