@@ -13,11 +13,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './slices/userSlice';
 import { ToastContainer } from 'react-toastify';
 import Protected from './components/Protected';
-import UpdatePro from './components/UpdatePro';
 import UpdatePassword from './components/UpdatePassword';
 import ForgPassword from './components/ForgPassword';
 import SetNewPassword from './components/SetNewPassword';
-
 import Shipping from './components/Shipping';
 import ConfirmOrder from './components/ConfirmOrder';
 import StripeCompo from './components/StripeCompo';
@@ -28,7 +26,7 @@ import MyOrders from './components/MyOrders';
 import OrderDetail from './components/OrderDetail';
 
 import DashBoard from './components/Admin/DashBoard';
-import AdminPro from './components/Admin/AdminPro';
+import AdminProducts from './components/Admin/AdminProducts';
 import NewProduct from './components/Admin/NewProduct';
 import AdminOrders from './components/Admin/AdminOrders';
 import AdminOrderUpdate from './components/Admin/AdminOrderUpdate';
@@ -42,6 +40,7 @@ import AdminUpdateProduct from './components/Admin/AdminUpdateProduct';
 import NotFound from './components/NotFound';
 import Contact from './components/Contact';
 import About from './components/About';
+import UpdateProfile from './components/UpdateProfile';
 const server = process.env.REACT_APP_BACKEND_URL;
 const App = () => {
 
@@ -59,7 +58,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    // window.addEventListener("contextmenu",(e)=>e.preventDefault());
+     window.addEventListener("contextmenu",(e)=>e.preventDefault());
     if (!isAuthenticated) {
       dispatch(loadUser());
     }
@@ -83,14 +82,14 @@ const App = () => {
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<About />} />
           <Route path='/Search' element={<Search></Search>} />
-          <Route path='/login' element={<Login></Login>} />
+          <Route path='/login'  element={<Login isAuth = {isAuthenticated} ></Login>} />
           <Route path='/account' element={
-            <Protected isAuth={true}>
+            <Protected isAuth={isAuthenticated}>
               <Account />
             </Protected>
           } />
           <Route path='/edit/profile' element={
-            <Protected isAuth={isAuthenticated} ><UpdatePro /></Protected>
+            <Protected isAuth={isAuthenticated} ><UpdateProfile /></Protected>
           } />
           <Route path='/update/password' element={<Protected isAuth={isAuthenticated}><UpdatePassword></UpdatePassword></Protected>} />
           <Route path='/forgot/password' element={<ForgPassword />} />
@@ -128,7 +127,7 @@ const App = () => {
             <Route path='dashboard' element={
               <Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<DashBoard />} />
             }></Route>
-            <Route path='products' element={<Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<AdminPro />} />}></Route>
+            <Route path='products' element={<Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<AdminProducts />} />}></Route>
             <Route path='orders' element={<Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<AdminOrders />} />}></Route>
             <Route path='users' element={<Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<AdminUsers />} />}></Route>
             <Route path='new/product' element={<Protected isAuth={isAuthenticated} role={userData?.role} isAdmin={true} children={<NewProduct />} />}></Route>

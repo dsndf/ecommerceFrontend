@@ -262,7 +262,7 @@
     height: auto;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     padding: 0px 50px;
     margin-bottom: 50px;
 
@@ -310,7 +310,7 @@
         height: auto;
         display: flex;
         flex-direction: column;
-
+ align-items: center;
 
     }
 

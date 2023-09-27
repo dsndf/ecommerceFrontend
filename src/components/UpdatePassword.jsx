@@ -15,6 +15,8 @@ import {
 import "../styles/UpdatePassword.scss";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { STATUS } from "../slices/productsSlice";
+import Loader from "./Loader";
 
 const UpdatePassword = () => {
   const userState = useSelector((state) => state.userReducer);
@@ -52,7 +54,7 @@ const UpdatePassword = () => {
         progress: undefined,
         theme: "dark",
       });
-      setUserError("");
+      dispatch(setUserError(""));
     }
   }, [dispatch, isPasswordUpdate, err]);
 
@@ -64,48 +66,52 @@ const UpdatePassword = () => {
   return (
     <div className="passwordContainer">
       <div className="passwordBox">
-        <h3>Update Password</h3>
         <form className="passwordForm" onSubmit={PasswordUpdate}>
-          <div className="ipdiv">
-            {<BsKey></BsKey>}
-            <input
-              type="password"
-              required
-              placeholder="Old Password"
-              name="password"
-              value={old}
-              onChange={(e) => setOld(e.target.value)}
-            />
-          </div>
-          <div className="ipdiv">
-            {" "}
-            <RxLockOpen1></RxLockOpen1>
-            <input
-              type="password"
-              required
-              placeholder="New Password"
-              name="New_Password"
-              value={change}
-              onChange={(e) => setChange(e.target.value)}
-            />
-          </div>
-          <div className="ipdiv">
-        
-            <RxLockClosed></RxLockClosed>
-            <input
-              id="newpw"
-              type="password"
-              required
-              placeholder="Confirm Password"
-              name="Confirm_password"
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-            />
-          </div>
-
-          <button type="submit" className="org-btn">
-            Change Password
-          </button>
+          {status === STATUS.LOADING ? (
+            <Loader />
+          ) : (
+            <>
+              <h3 style={{ fontWeight: 500 }}>Update Password</h3>
+              <div className="ipdiv">
+                {<BsKey></BsKey>}
+                <input
+                  type="password"
+                  required
+                  placeholder="Old Password"
+                  name="password"
+                  value={old}
+                  onChange={(e) => setOld(e.target.value)}
+                />
+              </div>
+              <div className="ipdiv">
+                {" "}
+                <RxLockOpen1></RxLockOpen1>
+                <input
+                  type="password"
+                  required
+                  placeholder="New Password"
+                  name="New_Password"
+                  value={change}
+                  onChange={(e) => setChange(e.target.value)}
+                />
+              </div>
+              <div className="ipdiv">
+                <RxLockClosed></RxLockClosed>
+                <input
+                  id="newpw"
+                  type="password"
+                  required
+                  placeholder="Confirm Password"
+                  name="Confirm_password"
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                />
+              </div>
+              <button type="submit" className="org-btn">
+                Change Password
+              </button>
+            </>
+          )}
         </form>
       </div>
     </div>

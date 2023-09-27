@@ -18,12 +18,13 @@ import StepperCompo from "./StepperCompo";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import axios from "axios";
-import { placeOrder } from "../slices/ordersSlice";
+import { placeOrder, setIsOrderPlaced } from "../slices/ordersSlice";
 import { useNavigate } from "react-router-dom";
-import '../styles/Payment.scss';
+import "../styles/Payment.scss";
 import { useEffect } from "react";
 import { useState } from "react";
-const server=process.env.REACT_APP_BACKEND_URL;
+import { removeCartItems } from "../slices/cartSlice";
+const server = process.env.REACT_APP_BACKEND_URL;
 
 const Payment = () => {
   const stripe = useStripe();
@@ -33,11 +34,17 @@ const Payment = () => {
   const { shippingInfo, cart } = useSelector((state) => state.cartReducer);
   const { isOrderPlaced } = useSelector((state) => state.ordersReducer);
   const paybtn = useRef(null);
-  const [process,setProcess] = useState(false);
+  const [process, setProcess] = useState(false);
   const { Total, subTotal, tax, shippingCharge, orderItems } = JSON.parse(
     sessionStorage.orderInfo
   );
-
+  const removeItemsFromCart = ()=>{
+      for(let item of cart){
+        if(item.quantity === item.stocks){
+          dispatch(removeCartItems(item.product));
+        }
+      }
+  }
   const payment = { amount: Math.round(Total * 100) };
   const navigation = useNavigate();
   const order = {
@@ -56,7 +63,7 @@ const Payment = () => {
     if (!stripe || !elements) {
       return;
     }
-    paybtn.current.disabled = true;
+   
     setProcess(true);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -76,12 +83,10 @@ const Payment = () => {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        console.log(id);
-        const config = {  
-         withCredentials:true,
+        const config = {
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
-       
           },
         };
         const { data } = await axios.post(
@@ -90,24 +95,16 @@ const Payment = () => {
           config
         );
 
-        const { success, client_secret } = data;
+        const { client_secret } = data;
 
         const result = await stripe.confirmCardPayment(client_secret);
 
         if (result.error) {
-          toast.error(result.error.message, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
+           setProcess(false);
+          toast.error(result.error.message);
 
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-          paybtn.current.disabled = false;
-        } else {
+        }
+         else {
           if (result.paymentIntent.status === "succeeded") {
             toast.success("Payment has been done successfully", {
               position: "top-center",
@@ -124,80 +121,58 @@ const Payment = () => {
               id: result.paymentIntent.id,
               status: result.paymentIntent.status,
             };
-
             dispatch(placeOrder(order));
-     
+            removeItemsFromCart();
           } else {
-            toast.error("There is some issue", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            toast.error("There is some issue");
           }
         }
       } catch (err) {
-        paybtn.current.disabled = false;
-        toast.error(err.response.data.message, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+      
+        toast.error(err.response.data.message);
       }
     }
   };
-  useEffect(()=>{
-if(isOrderPlaced){
-  navigation("/order/success");
-}
-  },[isOrderPlaced])
+  useEffect(() => {
+    if (isOrderPlaced) {
+      dispatch(setIsOrderPlaced(false));
+      navigation("/order/success");
+    }
+  }, [isOrderPlaced]);
 
   return (
     <>
-    
       <div className="main-payment-cont">
-      
-      <StepperCompo step={2} />
-        <div className="paymentContainer"> 
-         
+        <StepperCompo step={2} />
+        <div className="paymentContainer">
           <div className="payment-box">
             <h3>Make Payment</h3>
-            <div className="ipdiv" >
+            <div className="ipdiv">
               <MdOutlineAccountBalanceWallet />
 
-              <CardNumberElement className="paymentinput"  />
+              <CardNumberElement className="paymentinput" />
             </div>
             <div className="ipdiv">
               <FaRegCalendarCheck />
               <CardCvcElement className="paymentinput" />
             </div>
-            <div  className="ipdiv">
+            <div className="ipdiv">
               <BsKey />
               <CardExpiryElement className="paymentinput" />
             </div>
-         { 
-          !process?  <input
+            {!process ? (
+              <input
                 className="org-btn"
                 type="submit"
                 ref={paybtn}
                 value={`Pay ₹${Total}.00`}
                 onClick={paymentSubmit}
-              />:<button  className="org-btn"><span className="processing"></span></button>
-           
-         }
-            
-
+              />
+            ) : (
+              <button className="org-btn">
+                <span className="processing"></span>
+              </button>
+            )}
           </div>
         </div>
       </div>

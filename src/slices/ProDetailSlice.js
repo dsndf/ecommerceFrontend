@@ -76,14 +76,14 @@ export function getProductReviews(ProId) {
 
 }
 //thunk for review deletion 
-export function deleteProductReview(ProId, userId) {
+export function deleteProductReview(proId,reviewId) {
 
     return async (dispatch, getState) => {
         dispatch(setStatus(STATUS.LOADING));
         try {
 
-            console.log(ProId, userId);
-            const { data } = await axios.delete(`${server}/admin/review?productId=${ProId}&user=${userId}`, { withCredentials: true });
+           
+            const { data } = await axios.delete(`${server}/admin/review?productId=${proId}&reviewId=${reviewId}`, { withCredentials: true });
             dispatch(setIsRevieweDeleted(data.success));
             dispatch(setStatus(STATUS.IDLE));
 

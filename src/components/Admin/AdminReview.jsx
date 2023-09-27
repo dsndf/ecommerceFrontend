@@ -13,7 +13,6 @@ import {
   setIsRevieweDeleted,
   setProductDetailsError,
 } from "../../slices/ProDetailSlice";
-import ErrorCompo from "../ErrorCompo";
 import { STATUS } from "../../slices/productsSlice";
 
 const AdminReview = () => {
@@ -25,11 +24,10 @@ const AdminReview = () => {
 
   const getReviews = (e) => {
     e.preventDefault();
-    console.log("REVIEW ID IS HERE", productId);
     if (productId) {
-      console.log("entered");
       dispatch(getProductReviews(productId));
-    } else return;
+    }
+    return;
   };
 
   const gridColumns =  [

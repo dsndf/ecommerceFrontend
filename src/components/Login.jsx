@@ -18,7 +18,7 @@ import { STATUS } from "../slices/productsSlice";
 import { toast } from "react-toastify";
 import Loader from "./Loader";
 
-const Login = () => {
+const Login = ({isAuth}) => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userReducer);
   const { isLogin, status,isLogout,isRegister, err } = userState;
@@ -50,6 +50,9 @@ const Login = () => {
   };
 
   useEffect(() => {
+    if(isAuth){
+      navigation('/account');
+    }
     if(isLogout){
       toast.success("Logged out Successfully");
       dispatch(setLogoutStatus(false));

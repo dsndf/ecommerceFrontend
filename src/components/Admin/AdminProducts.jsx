@@ -15,7 +15,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 
 
-const AdminPro = () => {
+const AdminProducts = () => {
   const { status, allProducts, isDeleted, err } = useSelector(
     (state) => state.productReducer
   );
@@ -111,4 +111,4 @@ const AdminPro = () => {
   );
 };
 
-export default AdminPro;
+export default AdminProducts;

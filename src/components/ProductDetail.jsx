@@ -119,7 +119,7 @@ const ProductDetail = () => {
     }
     dispatch(fetchProductDetails(id));
     getRelatedProducts(id);
-  }, [isReviewed]);
+  }, [isReviewed,id]);
 
   if (productDetails.status === STATUS.LOADING) {
     return <Loading></Loading>;

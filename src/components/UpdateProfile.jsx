@@ -22,7 +22,7 @@ import "../styles/UpdateProfile.scss";
 
 import { useEffect } from "react";
 
-const UpdatePro = () => {
+const UpdateProfile = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userReducer);
 
@@ -152,4 +152,4 @@ const UpdatePro = () => {
   );
 };
 
-export default UpdatePro;
+export default UpdateProfile;
