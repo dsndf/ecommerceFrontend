@@ -59,7 +59,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    window.addEventListener("contextmenu",(e)=>e.preventDefault());
+    // window.addEventListener("contextmenu",(e)=>e.preventDefault());
     if (!isAuthenticated) {
       dispatch(loadUser());
     }
@@ -85,7 +85,7 @@ const App = () => {
           <Route path='/Search' element={<Search></Search>} />
           <Route path='/login' element={<Login></Login>} />
           <Route path='/account' element={
-            <Protected isAuth={isAuthenticated}>
+            <Protected isAuth={true}>
               <Account />
             </Protected>
           } />

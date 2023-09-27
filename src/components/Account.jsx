@@ -5,6 +5,7 @@ import { logout } from "../slices/userSlice";
 import "../styles/Account.scss";
 import { STATUS } from "../slices/productsSlice";
 import Loading from "./Loading";
+import {MdLogout} from 'react-icons/md';
 const Account = () => {
   const { isAuthenticated, userData ,status} = useSelector(
     (state) => state.userReducer
@@ -40,21 +41,21 @@ if(status === STATUS.LOADING){
           <div className="profile-links">
             <Link to={"/edit/profile"}>Edit Proflle</Link>
             <Link  to={"/update/password"} >Change Password</Link>
-             <Link  onClick={()=>dispatch(logout())} >Logout?</Link>
+             {/* <Link  onClick={()=>dispatch(logout())} >Logout <MdLogout/></Link> */}
           </div>
           <div
             style={{
-              marginBottom: "30px",
+              marginBottom: "20px",
             }}
           >
             <Link to={"/orders"} className="org-btn">
               My Orders
             </Link>
-        
+       
            
           </div>
      
-
+     <button  className="logout-btn" onClick={()=>dispatch(logout())} >Logout <MdLogout/></button>
         </div>
       </div>
     </>

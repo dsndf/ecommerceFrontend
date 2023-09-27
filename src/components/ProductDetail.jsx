@@ -27,8 +27,8 @@ import { removewishListItems, setwishList } from "../slices/wishListSlice";
 import WishList from "./WishList";
 import ReviewBox from "./ReviewBox";
 import axios from "axios";
-import RelatedProduct from "./RelatedProduct";
 import { AiFillHeart } from "react-icons/ai";
+import ProductBox from "./ProductBox";
 const server = process.env.REACT_APP_BACKEND_URL;
 const ProductDetail = () => {
   const [cartModalState, setCartModalState] = useState(false);
@@ -285,14 +285,15 @@ const ProductDetail = () => {
         <section className="related-products">
           {!loading &&
             relatedProducts.map((e, ind) => (
-              <RelatedProduct
-                key={ind}
-                id={e._id}
-                rating={e.rating}
-                name={e.name}
-                price={e.price}
-                url={e?.images?.[0]?.url}
-              />
+            <ProductBox
+            key={ind}
+            name={e.name}
+            rating={e.rating}
+            price={e.price}
+            id={e._id}
+            numOfReviews={e.numOfReviews}
+            image={e.images?.[0]}
+            />
             ))}
         </section>
       ) : (
