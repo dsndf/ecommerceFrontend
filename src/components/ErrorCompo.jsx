@@ -9,7 +9,7 @@ const ErrorCompo = ({ msg }) => {
       
       <div className="Error
     ">
-        <h2>{msg?msg:"!Please check your internet connection"}</h2>
+        <h2>{msg!=="Network Error"?msg:"!Please check your internet connection"}</h2>
       </div>
       <ToastContainer />
     </>

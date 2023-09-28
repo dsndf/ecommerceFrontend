@@ -131,6 +131,7 @@ const Shipping = () => {
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                 >
+                <option  selected  value={""}>State</option>
                   {State.getStatesOfCountry(country).map((v, ind) => {
                     return (
                       <option key={ind} value={v.name}>

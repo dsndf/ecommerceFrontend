@@ -56,7 +56,7 @@ const Products = () => {
         sortBy
       )
     );
-  }, [dispatch, keyword, currentPage, price, category, rating, sortBy]);
+  }, [keyword, currentPage, price, category, rating, sortBy]);
   if (productsState.status == STATUS.ERROR) {
     return <ErrorCompo msg={productsState?.err} />;
   }

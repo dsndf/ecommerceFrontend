@@ -5,7 +5,7 @@ import axios from "axios";
 export const STATUS =  Object.freeze({
   IDLE: "idle",
   LOADING: "loading",
-  ERROR: "erorr"
+  ERROR: "error"
 })
 const server=process.env.REACT_APP_BACKEND_URL;
 
@@ -96,7 +96,8 @@ export function fetchProducts(keyword = "", currentPage=1, price=[0,4000], categ
     }
     catch (err) {
       dispatch(setStatus(STATUS.ERROR));
-      dispatch(setError(err.response.data.message));
+      dispatch(setError(err.message));
+
     }
 
 

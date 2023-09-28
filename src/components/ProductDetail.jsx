@@ -1,17 +1,17 @@
 import React, { useMemo } from "react";
 import Heading from "./Heading";
-import NotFound from "./NotFound";
 import { useEffect } from "react";
 import { GrAdd, GrSubtract } from "react-icons/gr";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { BiHeart } from "react-icons/bi";
 import Loader from "./Loader";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   fetchProductDetails,
   setIsReviewed,
   setProductDetailsError,
+  setStatus,
 } from "../slices/ProDetailSlice";
 import { STATUS } from "../slices/productsSlice";
 import Loading from "./Loading";
@@ -31,6 +31,7 @@ import { AiFillHeart } from "react-icons/ai";
 import ProductBox from "./ProductBox";
 const server = process.env.REACT_APP_BACKEND_URL;
 const ProductDetail = () => {
+  const navigate =   useNavigate();
   const [cartModalState, setCartModalState] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -43,7 +44,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const productDetails = useSelector((state) => state.productDetailReducer);
   
-  const { isReviewed ,err } = productDetails;
+  const { isReviewed ,err ,status} = productDetails;
   function openModal(e) {
     document.body.style.overflowY = "hidden";
     setModal(true);
@@ -117,15 +118,18 @@ const ProductDetail = () => {
       toast.success("Your review has been submitted");
       dispatch(setIsReviewed(false));
     }
+   
     dispatch(fetchProductDetails(id));
+
     getRelatedProducts(id);
   }, [isReviewed,id]);
 
   if (productDetails.status === STATUS.LOADING) {
     return <Loading></Loading>;
   }
- if(productDetails.status === STATUS.ERROR && err === "Product not found"){
-  return <NotFound/>
+ if(productDetails.status === STATUS.ERROR && err === "Product Not Found"){
+  dispatch(setProductDetailsError(""));
+  navigate('/notfound');
  }
   return (
     <div>

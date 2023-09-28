@@ -92,7 +92,7 @@ const UpdateProfile = () => {
       });
       dispatch(setUserError(""));
     }
-  }, [isUpdated, dispatch, user, err]);
+  }, [isUpdated, user, err]);
 
   return (
     <div className="updateContainer">

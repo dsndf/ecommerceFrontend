@@ -222,9 +222,6 @@ export function loadUser() {
             dispatch(setAuth(true));
             dispatch(setStatus(STATUS.IDLE));
             dispatch(setUserError(""));
-
-
-
         }
         catch (err) {
             dispatch(setStatus(STATUS.IDLE));
