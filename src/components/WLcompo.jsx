@@ -19,7 +19,7 @@ if(!wishList.length){
       {wishList &&
         wishList.map((v) => {
           return (
-            <div className="wl-box">
+            <div className="wl-box" key={v.product}>
               <div>
                 <img src={v.image.url} alt="" />
                

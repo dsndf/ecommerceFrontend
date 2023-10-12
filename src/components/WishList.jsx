@@ -30,9 +30,9 @@ const WishList = ({ close }) => {
         <h4>Your Wishlist</h4>
         <div className="wishList-modal-items">
           {wishList &&
-            wishList.map((v, index) => {
+            wishList.map((v) => {
               return (
-                <div key={index} className="wishList-modal-box">
+                <div key={v.product} className="wishList-modal-box">
                   <div>
                     <img src={v.image.url} alt="img" />
                   </div>

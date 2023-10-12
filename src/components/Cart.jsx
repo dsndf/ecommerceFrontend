@@ -68,6 +68,7 @@ const Cart = () => {
                 <tr> 
                   <td>
                     <CartBox
+                    key={v.product}
                       name={v.name}
                       image={v.image}
                       price={v.price}

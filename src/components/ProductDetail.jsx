@@ -266,10 +266,10 @@ const ProductDetail = () => {
       {reviews?.length !== 0 ? (
         <section className="review-sec">
           {reviews &&
-            reviews.map((v, ind) => {
+            reviews.map((v) => {
               return (
                 <ReviewBox
-                  key={ind}
+                  key={v._id}
                   name={v?.name}
                   rating={v?.rating}
                   review={v?.comment}
@@ -290,7 +290,7 @@ const ProductDetail = () => {
           {!loading &&
             relatedProducts.map((e, ind) => (
             <ProductBox
-            key={ind}
+            key={e._id}
             name={e.name}
             rating={e.rating}
             price={e.price}

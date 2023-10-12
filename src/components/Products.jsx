@@ -165,11 +165,11 @@ const Products = () => {
           {productsState.status == STATUS.LOADING ? (
             <Loading></Loading>
           ) : products.length ? (
-            products.map((v, ind) => {
+            products.map((v) => {
               return (
                 <ProductBox
                   image={v.images[0]}
-                  key={ind}
+                  key={v._id}
                   id={v._id}
                   price={v.price}
                   name={v.name}

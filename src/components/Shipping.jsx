@@ -127,8 +127,8 @@ const Shipping = () => {
                 <select
                   required
                   name="country"
-                  id=""
-                  value={state}
+                  id=""      value={state}
+            
                   onChange={(e) => setState(e.target.value)}
                 >
                 <option  selected  value={""}>State</option>

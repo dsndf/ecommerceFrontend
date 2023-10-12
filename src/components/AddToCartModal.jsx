@@ -33,9 +33,9 @@ useEffect(()=>{
         <h4>Shopping Cart</h4>
         <div className="cart-modal-items">
           {cart &&
-            cart.map((v, index) => {
+            cart.map((v) => {
               return (
-                <div key={index} className="cart-modal-box">
+                <div key={v.product} className="cart-modal-box">
                   <div>
                     <img src={v.image.url} alt="img" />
                   </div>
