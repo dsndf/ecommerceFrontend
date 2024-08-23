@@ -245,6 +245,7 @@ export function logout() {
             dispatch(setAuth(false));
             dispatch(setStatus(STATUS.IDLE));
             dispatch(setLogoutStatus(true));
+              dispatch(setLoginStatus(false));
             dispatch(setUserError(""));
 
 
