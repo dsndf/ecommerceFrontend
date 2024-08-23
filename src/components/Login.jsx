@@ -72,7 +72,7 @@ const Login = ({isAuth}) => {
       toast.error(err);
       dispatch(setUserError(""));
     }
-  }, [ isLogin, status, isRegister, err]);
+  }, [ isLogin, isLogout, status, isRegister, err]);
 
   const registerDataChangeHandler = (e) => {
     if (e.target.name === "avatar") {
