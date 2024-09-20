@@ -111,7 +111,7 @@ const ProductDetail = () => {
       return false;
     }
     return true;
-  }, [cart.length]);
+  }, [cart.length, id]);
 
   useEffect(() => {
     if (isReviewed) {
