@@ -40,7 +40,7 @@ const WishList = ({ close }) => {
                     <p>{v.name.length>20?v.name.slice(0,20):v.name}</p>
                   </div>
                   <div>
-                    <p>{v.price}</p>
+                    <p>₹{v.price}</p>
                   </div>
                   <TfiClose  onClick={()=>dispatch(removewishListItems(v.product))}  />
                 </div>

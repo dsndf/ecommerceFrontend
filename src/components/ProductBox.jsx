@@ -20,27 +20,19 @@ const ProductBox = ({ id, image, name, desc, price, numOfReviews, rating }) => {
 
           }</h4>
           
-          <div
-            style={{
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "80%",
-            }}
-          >
-            <ReactStars
-              edit={false}
-              activeColor="#ee8f2a"
-              size={window.innerWidth <= 500 ? 23 : 25}
-              value={rating}
-              color={"rgb(185 185 185 / 47%)"}
-              isHalf={true}
-            
-            ></ReactStars>
-            <small> ({numOfReviews} Reviews)</small>
-          </div>
-          <div>₹{price}.00</div>
+     <div className="rating-section">
+  <ReactStars
+    edit={false}
+    activeColor="#ee8f2a"
+    size={window.innerWidth <= 500 ? 20 : 22}
+    value={rating}
+    color="rgb(185 185 185 / 47%)"
+    isHalf={true}
+  />
+  <small>({numOfReviews} Reviews)</small>
+</div>
+<div className="price">₹{price}.00</div>
+
         </div>
       </div>
     </Link>
